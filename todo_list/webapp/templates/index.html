@@ -11,7 +11,6 @@
                     <div class="card-body">
                         <h3 class="card-text"><a href="{% url 'task_view' task.pk %}">{{ task.description }}</a>
                         </h3>
-{#                        <p class="card-text">description: {{ task.full_description }}</p>#}
                         <p class="card-text">status: {{ task.status }}</p>
                         <p class="card-text">type: {{ task.type }}</p>
                         <p class="card-text">data: {{ task.date }}</p>
