@@ -39,3 +39,35 @@ class Create_View(TemplateView):
             return render(request, 'create.html', context={'form': form})
 
 
+
+class Update_View(TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        task_pk = kwargs.get('pk')
+        task = get_object_or_404(Task, pk=task_pk)
+        form = TaskForm(data={
+            'description': task.description,
+            'status': task.status,
+            'type': task.type
+        })
+        return render(request, 'update.html', context={
+            'form': form,
+            'task': task
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(data=request.POST)
+        task_pk = kwargs.get('pk')
+        task = get_object_or_404(Task, pk=task_pk)
+        if form.is_valid():
+            task.description = form.cleaned_data['description']
+            task.status = form.cleaned_data['status']
+            task.type = form.cleaned_data['type']
+            task.save()
+
+            return redirect('task_detail', pk=task_pk)
+        else:
+            return render(request, 'update.html', context={
+                'form': form,
+                'task': task,
+            })

@@ -22,4 +22,5 @@ urlpatterns = [
     path('', Indexview.as_view(), name='index'),
     path('task/<int:pk>/', Task_view.as_view(), name='task_view'),
     path('task/add', Create_View.as_view(), name='create_view'),
+    path('task/update', Update_View.as_view(), name='update_view'),
 ]
