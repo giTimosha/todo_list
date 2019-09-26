@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{#{% block menu %}#}
-{#<a class="navbar-brand" href="{% url 'task_add' %}">Add Task View</a>#}
-{#{% endblock %}#}
+{% block menu %}
+<a class="navbar-brand" href="{% url 'create_view' %}">Add Task View</a>
+{% endblock %}
 {% block content %}
     <h1 class="mt-3">This is To Do list</h1>
     <div class="row">
