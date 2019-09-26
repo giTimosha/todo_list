@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{#{% block menu %}#}
+{#<a class="navbar-brand" href="{% url 'task_add' %}">Add Task View</a>#}
+{#{% endblock %}#}
+{% block content %}
+    <h1 class="mt-3">This is To Do list</h1>
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-text"><a href="{% url 'task_view' task.pk %}">{{ task.description }}</a>
+                        </h3>
+{#                        <p class="card-text">description: {{ task.full_description }}</p>#}
+                        <p class="card-text">status: {{ task.status }}</p>
+                        <p class="card-text">type: {{ task.type }}</p>
+                        <p class="card-text">data: {{ task.date }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
