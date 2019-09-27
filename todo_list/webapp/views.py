@@ -44,8 +44,7 @@ class Update_View(TemplateView):
 
     def get(self, request, **kwargs):
         task = get_object_or_404(Task, pk=kwargs['pk'])
-        form = TaskForm(data={'description': task.description, 'full_description': task.full_description, 'status': task.status,
-                              'type': task.type})
+        form = TaskForm(data={'description': task.description, 'full_description': task.full_description, 'status': task.status, 'type': task.type})
         return render(request, 'update.html', context={'form': form, 'task': task})
 
     def post(self, request, **kwargs):
