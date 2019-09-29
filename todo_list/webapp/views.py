@@ -60,3 +60,16 @@ class Update_View(TemplateView):
             return redirect('task_view', pk=task.pk)
         else:
             return render(request, 'update.html', context={'form': form})
+
+
+class Delete_View(TemplateView):
+    def get(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
+        return render(request, 'delete.html', context={'task': task})
+
+    def post(self, request, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
+
+        task.delete()
+        return redirect('index')
+

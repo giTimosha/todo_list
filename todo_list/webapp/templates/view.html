@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block menu %}
 <a class="navbar-brand" href="{% url 'update_view' task.pk%}">Update</a>
+    <a class="navbar-brand" href="{% url 'delete_view' task.pk%}">Delete</a>
 {% endblock %}
 {% block content %}
     <div class="row">
