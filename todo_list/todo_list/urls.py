@@ -15,13 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webapp.views import Indexview, Task_view, Create_View, Update_View, Delete_View
+from webapp.views import Indexview, TaskView, CreateView, UpdateView, DeleteView, TypeView, StatusView, \
+    TypeCreateView, StatusCreateView, TypeUpdateView, StatusUpdateView, TypeDeleteView, StatusDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Indexview.as_view(), name='index'),
-    path('task/<int:pk>/', Task_view.as_view(), name='task_view'),
-    path('task/add', Create_View.as_view(), name='create_view'),
-    path('task/<int:pk>/update', Update_View.as_view(), name='update_view'),
-    path('task/<int:pk>/delete', Delete_View.as_view(), name='delete_view'),
+    path('task/<int:pk>/', TaskView.as_view(), name='task_view'),
+    path('task/add', CreateView.as_view(), name='create_view'),
+    path('task/<int:pk>/update', UpdateView.as_view(), name='update_view'),
+    path('task/<int:pk>/delete', DeleteView.as_view(), name='delete_view'),
+    path('types/', TypeView.as_view(), name='types_view'),
+    path('statuses/', StatusView.as_view(), name='status_view'),
+    path('types/add/', TypeCreateView.as_view(), name='type_create'),
+    path('status/add/', StatusCreateView.as_view(), name='status_create'),
+    path('types/<int:pk>/edit/', TypeUpdateView.as_view(), name='type_update'),
+    path('status/<int:pk>/edit/', StatusUpdateView.as_view(), name='status_update'),
+    path('types/<int:pk>/delete/', TypeDeleteView.as_view(), name='type_delete'),
+    path('status/<int:pk>/delete/', StatusDeleteView.as_view(), name='status_delete')
 ]
