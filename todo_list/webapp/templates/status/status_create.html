@@ -3,6 +3,6 @@
 {% block content %}
    <h1>Create Status</h1>
    <form action="{% url 'status_create' %}" method="POST">
-        {% include 'partical/status_form.html' with button_text='Create' %}
+        {% include 'partial/status_form.html' with button_text='Create' %}
    </form>
 {% endblock %}
