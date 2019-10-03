@@ -1,8 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView
-
+from django.core.paginator import Paginator
 from webapp.forms import TaskForm
 from webapp.models import Task
+
+
+class IndexView(ListView):
+    context_object_name = 'articles'
+    model = Task
+    template_name = 'task/index.html'
+    ordering = ['-created_at']
+    paginate_by = 2
+    paginate_orphans = 1
 
 
 class Indexview(ListView):

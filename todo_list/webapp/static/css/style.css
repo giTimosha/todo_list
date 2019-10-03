@@ -4,6 +4,28 @@ body{
 h1{
     text-align: center;
 }
-/*.icon{*/
-    /*float: right;*/
-/*}*/
+.pagination {
+   text-align: center;
+}
+
+.pagination a, .pagination .page-disabled {
+   display: inline-block;
+   border: solid 1px #6a7ddd;
+   border-radius: 3px;
+   padding: 5px;
+   margin: 3px;
+}
+
+.pagination a {
+   background: #6a7ddd;
+   color: white;
+}
+
+.pagination a:hover {
+   background: #6a7dff;
+}
+
+.pagination .page-disabled {
+   background: #6a7dcc;
+   color: #dddddd
+}
