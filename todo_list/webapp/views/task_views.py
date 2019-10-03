@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView
 from django.core.paginator import Paginator
 from webapp.forms import TaskForm
 from webapp.models import Task
+from webapp.views.base_views import DetailView
 
 
 class IndexView(ListView):
@@ -22,13 +23,10 @@ class Indexview(ListView):
         return Task.objects.all()
 
 
-class TaskView(TemplateView):
+class TaskView(DetailView):
     template_name = 'task/view.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['task'] = get_object_or_404(Task, pk=kwargs['pk'])
-        return context
+    context_key = 'task'
+    model = Task
 
 
 class CreateView(TemplateView):

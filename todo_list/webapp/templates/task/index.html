@@ -8,9 +8,9 @@
 {% block content %}
     <h1 class="mt-3">This is To Do list</h1>
     <div class="row">
-{#    {% if is_paginated %} не работает#}
+    {% if is_paginated %}
     {% include 'partial/pagination.html' %}
-{#    {% endif %}#}
+    {% endif %}
         {% for task in tasks %}
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <div class="card">
