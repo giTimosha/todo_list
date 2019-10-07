@@ -56,3 +56,22 @@ class UpdateView(View):
         print(self.model)
         obj = get_object_or_404(self.model, pk=pk)
         return obj
+
+class DeleteView(View):
+    model = None
+    template_name = None
+    redirect_url = ''
+    context_object_name = None
+
+    def get(self, request, *args, **kwargs):
+        object = get_object_or_404(self.model, pk=kwargs['pk'])
+        return render(request, self.template_name, context={self.context_object_name: object})
+
+    def post(self, request, **kwargs):
+        object = get_object_or_404(self.model, pk=kwargs['pk'])
+
+        object.delete()
+        return redirect(self.get_redirect_url())
+
+    def get_redirect_url(self):
+        return self.redirect_url

@@ -20,7 +20,6 @@ class TypeCreateView(CreateView):
     model = Type
     form_class = TypeForm
 
-
     def get_success_url(self):
         return reverse('task_view', kwargs={'pk': self.object.pk})
 
