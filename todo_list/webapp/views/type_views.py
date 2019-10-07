@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView, CreateView
 
 from webapp.forms import TypeForm
 from webapp.models import Type
+from webapp.views import UpdateView
 
 
 class TypeView(ListView):
@@ -24,23 +25,14 @@ class TypeCreateView(CreateView):
         return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
-class TypeUpdateView(TemplateView):
+class TypeUpdateView(UpdateView):
+    form_class = TypeForm
+    template_name = 'type/type_update.html'
+    model = Type
+    context_object_name = 'type'
 
-    def get(self, request, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs['pk'])
-        form = TypeForm(data={'type': type})
-        return render(request, 'type/type_update.html', context={'form': form, 'type': type})
-
-    def post(self, request, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs['pk'])
-        task = TypeForm(data=request.POST)
-        if task.is_valid():
-            data = task.cleaned_data
-            type.type = data['type']
-            type.save()
-            return redirect('types_view')
-        else:
-            return render(request, 'type/type_update.html', context={'task': task})
+    def get_redirect_url(self):
+        return reverse('types_view')
 
 
 class TypeDeleteView(TemplateView):
