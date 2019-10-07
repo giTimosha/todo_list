@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView, CreateView
 
 from webapp.forms import StatusForm
 from webapp.models import Status
+from webapp.views.base_views import UpdateView
 
 
 class StatusView(ListView):
@@ -23,23 +24,14 @@ class StatusCreateView(CreateView):
         return reverse('status_index')
 
 
-class StatusUpdateView(TemplateView):
+class StatusUpdateView(UpdateView):
+    form_class = StatusForm
+    template_name = 'status/status_update.html'
+    model = Status
+    context_object_name = 'status'
 
-    def get(self, request, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs['pk'])
-        form = StatusForm(data={'status': status})
-        return render(request, 'status/status_update.html', context={'form': form, 'status': status})
-
-    def post(self, request, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs['pk'])
-        task = StatusForm(data=request.POST)
-        if task.is_valid():
-            data = task.cleaned_data
-            status.status = data['status']
-            status.save()
-            return redirect('status_view')
-        else:
-            return render(request, 'status/status_update.html', context={'task': task})
+    def get_redirect_url(self):
+        return reverse('status_view')
 
 
 class StatusDeleteView(TemplateView):

@@ -36,7 +36,6 @@ class TaskCreateView(CreateView):
 class TaskUpdateView(UpdateView):
     form_class = TaskForm
     template_name = 'task/update.html'
-    # redirect_url = 'task/view.html'
     model = Task
     context_object_name = 'task'
 
