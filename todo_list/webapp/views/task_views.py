@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, ListView, CreateView
 from webapp.forms import TaskForm
 from webapp.models import Task
-from webapp.views.base_views import DetailView, UpdateView
+from webapp.views.base_views import DetailView, UpdateView, DeleteView
 
 
 class IndexView(ListView):
@@ -43,13 +43,11 @@ class TaskUpdateView(UpdateView):
         return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
-class DeleteView(TemplateView):
-    def get(self, request, *args, **kwargs):
-        task = get_object_or_404(Task, pk=kwargs['pk'])
-        return render(request, 'task/delete.html', context={'task': task})
+class TaskDeleteView(DeleteView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'task/delete.html'
 
-    def post(self, request, **kwargs):
-        task = get_object_or_404(Task, pk=kwargs['pk'])
+    def get_redirect_url(self):
+        return reverse('index')
 
-        task.delete()
-        return redirect('index')
