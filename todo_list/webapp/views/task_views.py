@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, ListView, CreateView
 from webapp.forms import TaskForm
 from webapp.models import Task
-from webapp.views.base_views import DetailView
+from webapp.views.base_views import DetailView, UpdateView
 
 
 class IndexView(ListView):
@@ -29,31 +29,19 @@ class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
 
-
     def get_success_url(self):
         return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
-class UpdateView(TemplateView):
+class TaskUpdateView(UpdateView):
+    form_class = TaskForm
+    template_name = 'task/update.html'
+    # redirect_url = 'task/view.html'
+    model = Task
+    context_object_name = 'task'
 
-    def get(self, request, **kwargs):
-        task = get_object_or_404(Task, pk=kwargs['pk'])
-        form = TaskForm(data={'description': task.description, 'full_description': task.full_description, 'status': task.status, 'type': task.type})
-        return render(request, 'task/update.html', context={'form': form, 'task': task})
-
-    def post(self, request, **kwargs):
-        form = TaskForm(data=request.POST)
-        task_pk = kwargs.get('pk')
-        task = get_object_or_404(Task, pk=task_pk)
-        if form.is_valid():
-            task.description = form.cleaned_data['description']
-            task.full_description = form.cleaned_data['full_description']
-            task.status = form.cleaned_data['status']
-            task.type = form.cleaned_data['type']
-            task.save()
-            return redirect('task_view', pk=task.pk)
-        else:
-            return render(request, 'task/update.html', context={'form': form})
+    def get_redirect_url(self):
+        return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
 class DeleteView(TemplateView):
