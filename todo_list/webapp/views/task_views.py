@@ -1,23 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, ListView
-from django.core.paginator import Paginator
+from django.urls import reverse
+from django.views.generic import TemplateView, ListView, CreateView
 from webapp.forms import TaskForm
 from webapp.models import Task
 from webapp.views.base_views import DetailView
 
 
 class IndexView(ListView):
-    context_object_name = 'articles'
+    context_object_name = 'tasks'
     model = Task
     template_name = 'task/index.html'
     ordering = ['-created_at']
-    paginate_by = 2
+    paginate_by = 3
     paginate_orphans = 1
-
-
-class Indexview(ListView):
-    template_name = 'task/index.html'
-    context_object_name = 'tasks'
 
     def get_queryset(self):
         return Task.objects.all()
@@ -29,20 +24,14 @@ class TaskView(DetailView):
     model = Task
 
 
-class CreateView(TemplateView):
+class TaskCreateView(CreateView):
+    template_name = 'task/create.html'
+    model = Task
+    form_class = TaskForm
 
-    def get(self, request, **kwargs):
-        form = TaskForm()
-        return render(request, 'task/create.html', context={'form': form})
 
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            task = Task.objects.create(description=data['description'], full_description=data['full_description'], status=data['status'], type=data['type'])
-            return redirect('task_view', pk=task.pk)
-        else:
-            return render(request, 'task/create.html', context={'form': form})
+    def get_success_url(self):
+        return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
 class UpdateView(TemplateView):
