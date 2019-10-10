@@ -10,12 +10,11 @@ class IndexView(ListView):
     context_object_name = 'tasks'
     model = Task
     template_name = 'task/index.html'
-    ordering = ['-created_at']
     paginate_by = 3
     paginate_orphans = 1
 
     def get_queryset(self):
-        return Task.objects.all()
+        return Task.objects.all().order_by('-date')
 
 
 class TaskView(DetailView):
