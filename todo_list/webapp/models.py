@@ -18,7 +18,7 @@ class Task(models.Model):
     status = models.ForeignKey('Status', related_name='task_status', verbose_name='Status', on_delete=models.PROTECT)
     type = models.ForeignKey('Type', related_name='task_type', verbose_name='type', on_delete=models.PROTECT)
     date = models.DateField(auto_now_add=True, null=False, blank=False, verbose_name='Date')
-    project = models.ForeignKey(Project, null=True, blank=False, related_name='project', on_delete=models.PROTECT,
+    project = models.ForeignKey(Project, null=True, blank=False, related_name='tasks', on_delete=models.PROTECT,
                                 verbose_name='Project')
 
     def __str__(self):
