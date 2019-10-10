@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{#{% block menu %}#}
-{#<a class="navbar-brand" href="{% url 'update_view' task.pk%}">Update</a>#}
+{% block menu %}
+<a class="navbar-brand" href="{% url 'project_update' project.pk%}">Update</a>
 {#    <a class="navbar-brand" href="{% url 'delete_view' task.pk%}">Delete</a>#}
-{#{% endblock %}#}
+{% endblock %}
 {% block content %}
     <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">

@@ -1,5 +1,5 @@
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
@@ -25,6 +25,16 @@ class ProjectDetailView(DetailView):
 class ProjectCreateView(CreateView):
     template_name = 'project/project_create.html'
     model = Project
+    form_class = ProjectForm
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.pk})
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = 'project/project_update.html'
+    context_object_name = 'project'
     form_class = ProjectForm
 
     def get_success_url(self):
