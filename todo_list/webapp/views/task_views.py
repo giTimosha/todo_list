@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView
 from webapp.forms import TaskForm
 from webapp.models import Task
-from webapp.views.base_views import DetailView, UpdateView, DeleteView
+from webapp.views.base_views import DetailView, DeleteView
 
 
 class IndexView(ListView):
@@ -34,12 +34,12 @@ class TaskCreateView(CreateView):
 
 
 class TaskUpdateView(UpdateView):
-    form_class = TaskForm
-    template_name = 'task/update.html'
     model = Task
+    template_name = 'task/update.html'
     context_object_name = 'task'
+    form_class = TaskForm
 
-    def get_redirect_url(self):
+    def get_success_url(self):
         return reverse('task_view', kwargs={'pk': self.object.pk})
 
 
@@ -50,4 +50,3 @@ class TaskDeleteView(DeleteView):
 
     def get_redirect_url(self):
         return reverse('index')
-
