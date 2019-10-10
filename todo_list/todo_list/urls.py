@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from webapp.views import IndexView, TaskView, TaskCreateView, UpdateView, DeleteView, TypeView, StatusView, \
     TypeCreateView, StatusCreateView, TypeUpdateView, StatusUpdateView, TypeDeleteView, StatusDeleteView, TaskUpdateView, TaskDeleteView
-from webapp.views.project_view import ProjectIndexView, ProjectDetailView
+from webapp.views.project_view import ProjectIndexView, ProjectDetailView, ProjectCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,4 +36,5 @@ urlpatterns = [
     path('status/<int:pk>/delete/', StatusDeleteView.as_view(), name='status_delete'),
     path('projects/', ProjectIndexView.as_view(), name='project_list'),
     path('project/<int:pk>/', ProjectDetailView.as_view(), name='project_view'),
+    path('projects/add/', ProjectCreateView.as_view(), name='project_create'),
 ]
