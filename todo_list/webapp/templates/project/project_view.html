@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{#{% block menu %}#}
+{#<a class="navbar-brand" href="{% url 'update_view' task.pk%}">Update</a>#}
+{#    <a class="navbar-brand" href="{% url 'delete_view' task.pk%}">Delete</a>#}
+{#{% endblock %}#}
+{% block content %}
+    <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-text">{{ project.name }}</h3>
+                        <p class="card-text">description: {{ project.description }}</p>
+                        <p class="card-text">created_at: {{ project.created_at }}</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
