@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block menu %}
 <a class="navbar-brand" href="{% url 'project_create' %}">Add Project</a>
+    <li>{% include 'partial/search.html' %}</li>
 {% endblock %}
 
 {% block content %}
