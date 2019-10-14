@@ -4,7 +4,7 @@
     <a class="navbar-brand" href="{% url 'types_view' %}">Types</a>
    <a class="navbar-brand" href="{% url 'status_view' %}">Statuses</a>
    <a class="navbar-brand" href="{% url 'project_list' %}">Projects</a>
-
+    <li>{% include 'partial/search.html' %}</li>
 {% endblock %}
 {% block content %}
     <h1 class="mt-3">This is To Do list</h1>
