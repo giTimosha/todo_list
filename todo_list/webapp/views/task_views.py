@@ -2,10 +2,9 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 from webapp.forms import TaskForm, SimpleSearchForm
 from webapp.models import Task
-from webapp.views.base_views import DetailView, DeleteView
 
 
 class IndexView(ListView):
@@ -74,5 +73,5 @@ class TaskDeleteView(DeleteView):
     context_object_name = 'task'
     template_name = 'task/delete.html'
 
-    def get_redirect_url(self):
+    def get_success_url(self):
         return reverse('index')
