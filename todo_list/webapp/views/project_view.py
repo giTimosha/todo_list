@@ -73,7 +73,6 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = 'project'
     template_name = 'project/project_delete.html'
 
-
     def get_success_url(self):
         return reverse('project_list')
 
