@@ -56,7 +56,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     form_class = TaskForm
 
     def get_success_url(self):
-        return reverse('task_view', kwargs={'pk': self.object.pk})
+        return reverse('webapp:task_view', kwargs={'pk': self.object.pk})
 
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
@@ -66,7 +66,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     form_class = TaskForm
 
     def get_success_url(self):
-        return reverse('task_view', kwargs={'pk': self.object.pk})
+        return reverse('webapp:task_view', kwargs={'pk': self.object.pk})
 
 
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
@@ -75,4 +75,4 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'task/delete.html'
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('webapp:index')

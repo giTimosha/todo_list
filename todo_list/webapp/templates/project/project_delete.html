@@ -5,9 +5,9 @@
 {% endblock %}
 {% block content %}
     <h1>do you definitely want to delete this project"{{ project }}"?</h1>
-    <form method="POST" action="{% url "project_delete" project.pk %}" class="text-center">
+    <form method="POST" action="{% url "webapp:project_delete" project.pk %}" class="text-center">
         {% csrf_token %}
         <p><input type="submit" value="delete"></p>
-        <p><a href="{% url "project_list" %}">Cancel</a></p>
+        <p><a href="{% url "webapp:project_list" %}">Cancel</a></p>
     </form>
 {% endblock %}

@@ -13,8 +13,8 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if error == None:
-                return redirect('index')
-            return redirect('index')
+                return redirect('webapp:index')
+            return redirect('webapp:index')
         else:
             context['has_error'] = True
     return render(request, 'login.html', context=context)
@@ -24,5 +24,5 @@ def logout_view(request):
 
     logout(request)
 
-    return redirect('index')
+    return redirect('webapp:index')
 

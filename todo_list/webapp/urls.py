@@ -24,4 +24,4 @@ urlpatterns = [
     path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
 ]
 
-# app_name = 'webapp'
+app_name = 'webapp'

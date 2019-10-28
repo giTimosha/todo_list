@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block menu %}
-<a class="navbar-brand" href="{% url 'project_create' %}">Add Project</a>
+<a class="navbar-brand" href="{% url 'webapp:project_create' %}">Add Project</a>
     {% include 'partial/search.html' %}
 {% endblock %}
 
@@ -14,11 +14,8 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-text"><a href="{% url 'project_view' pro.pk %}">{{ pro.name }}</a>
+                        <h3 class="card-text"><a href="{% url 'webapp:project_view' pro.pk %}">{{ pro.name }}</a>
                         </h3>
-{#                        <p class="card-text">status: {{ pro.description }}</p>#}
-{#                        <p class="card-text">type: {{ task.type }}</p>#}
-{#                        <p class="card-text">data: {{ task.date }}</p>#}
                     </div>
                 </div>
             </div>

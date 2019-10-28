@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block menu %}
-    <p><a class="navbar-brand" href="{% url 'create_view' %}">Add Task+</a></p>
-    <p><a class="navbar-brand" href="{% url 'types_view' %}">Types</a></p>
-   <p><a class="navbar-brand" href="{% url 'status_view' %}">Statuses</a></p>
-   <p><a class="navbar-brand" href="{% url 'project_list' %}">Projects</a></p>
+    <p><a class="navbar-brand" href="{% url 'webapp:create_view' %}">Add Task+</a></p>
+    <p><a class="navbar-brand" href="{% url 'webapp:types_view' %}">Types</a></p>
+   <p><a class="navbar-brand" href="{% url 'webapp:status_view' %}">Statuses</a></p>
+   <p><a class="navbar-brand" href="{% url 'webapp:project_list' %}">Projects</a></p>
     {% if request.user.is_authenticated %}
-                 <p><p class="navbar-brand">privet, {{ user }}</p>
+                 <p><p class="navbar-brand">Hello, {{ user }}</p>
                  <p><a class="navbar-brand" href="{% url 'accounts:logout' %}">log out</a></p>
              {% else %}
                  <p><a class="navbar-brand" href="{% url 'accounts:login' %}">log in</a></p>
@@ -22,7 +22,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-text"><a href="{% url 'task_view' task.pk %}">{{ task.description }}</a>
+                        <h3 class="card-text"><a href="{% url 'webapp:task_view' task.pk %}">{{ task.description }}</a>
                         </h3>
                         <p class="card-text">status: {{ task.status }}</p>
                         <p class="card-text">type: {{ task.type }}</p>
