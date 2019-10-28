@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from django.core.exceptions import ValidationError
 
 
 class UserCreationForm(forms.ModelForm):
@@ -16,6 +17,15 @@ class UserCreationForm(forms.ModelForm):
 
         if not (first_name or last_name):
             raise forms.ValidationError('заполните имя или фамилия.')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        try:
+            User.objects.get(email=email)
+            raise ValidationError('User with this email already exists',
+                                  code='user_email_exists')
+        except User.DoesNotExist:
+            return email
 
     def clean_password_confirm(self):
         password = self.cleaned_data.get("password")
