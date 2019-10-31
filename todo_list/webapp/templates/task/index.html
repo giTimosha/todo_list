@@ -4,6 +4,8 @@
     <p><a class="navbar-brand" href="{% url 'webapp:types_view' %}">Types</a></p>
    <p><a class="navbar-brand" href="{% url 'webapp:status_view' %}">Statuses</a></p>
    <p><a class="navbar-brand" href="{% url 'webapp:project_list' %}">Projects</a></p>
+    <p><a class="navbar-brand" href="{% url 'accounts:user' %}">Users</a></p>
+
     {% if request.user.is_authenticated %}
                  <p><p class="navbar-brand">Hello, {{ user }}</p>
                  <p><a class="navbar-brand" href="{% url 'accounts:logout' %}">log out</a></p>

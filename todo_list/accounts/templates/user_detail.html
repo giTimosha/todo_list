@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Пользователь{% endblock %}
+
+{% block menu_links %}
+    <li><a href="#">Редактировать</a></li>
+    <li><a href="#">Смена пароля</a></li>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <p>Имя пользователя: {{ user_obj.username }}</p>
+    <p>Имя: {{ user_obj.first_name }}</p>
+    <p>Фамилия: {{ user_obj.last_name }}</p>
+    <p>Почта: {{ user_obj.email }}</p>
+{% endblock %}
+
+{##}
+{#{% extends 'base.html' %}#}
+{#{% block content %}#}
+{#    {% for user_object in user_list %}#}
+{#        <div class="card-body">#}
+{#            <a href="{% url 'accounts:detail' user_object.pk %}" class="nav-link">Имя пользователя: {{ user_object.username }}</a>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#{% endblock %}#}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for user_object in users %}
+        <div class="card-body">
+            <a href="{% url 'accounts:detail' user_object.pk %}" class="nav-link">Имя пользователя: {{ user_object.username }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}
