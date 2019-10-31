@@ -4,7 +4,8 @@
 {% block title %}Пользователь{% endblock %}
 
 {% block menu_links %}
-    <li><a href="#">Редактировать</a></li>
+    <li><a href="">Редактировать</a></li>
+    <p><a class="navbar-brand" href="{% url 'accounts:update' user_obj.pk %}">update</a></p>
     <li><a href="#">Смена пароля</a></li>
 {% endblock %}
 
@@ -16,13 +17,3 @@
     <p>Фамилия: {{ user_obj.last_name }}</p>
     <p>Почта: {{ user_obj.email }}</p>
 {% endblock %}
-
-{##}
-{#{% extends 'base.html' %}#}
-{#{% block content %}#}
-{#    {% for user_object in user_list %}#}
-{#        <div class="card-body">#}
-{#            <a href="{% url 'accounts:detail' user_object.pk %}" class="nav-link">Имя пользователя: {{ user_object.username }}</a>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#{% endblock %}#}
